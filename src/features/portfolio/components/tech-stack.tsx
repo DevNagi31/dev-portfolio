@@ -1,5 +1,3 @@
-import Image from "next/image"
-
 import {
   Tooltip,
   TooltipContent,
@@ -17,7 +15,7 @@ export function TechStack() {
       </PanelHeader>
 
       <PanelContent>
-        <ul className="flex flex-wrap gap-4 select-none">
+        <ul className="flex flex-wrap gap-2 select-none">
           {TECH_STACK.map((tech) => {
             return (
               <li key={tech.key} className="flex">
@@ -29,35 +27,9 @@ export function TechStack() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={tech.title}
+                        className="inline-flex items-center rounded-full border border-edge bg-background px-3 py-1.5 text-sm font-medium transition-colors hover:bg-accent-muted"
                       >
-                        {tech.theme ? (
-                          <>
-                            <Image
-                              src={`https://assets.chanhdai.com/images/tech-stack-icons/${tech.key}-light.svg`}
-                              alt={`${tech.title} light icon`}
-                              width={32}
-                              height={32}
-                              className="hidden [html.light_&]:block"
-                              unoptimized
-                            />
-                            <Image
-                              src={`https://assets.chanhdai.com/images/tech-stack-icons/${tech.key}-dark.svg`}
-                              alt={`${tech.title} dark icon`}
-                              width={32}
-                              height={32}
-                              className="hidden [html.dark_&]:block"
-                              unoptimized
-                            />
-                          </>
-                        ) : (
-                          <Image
-                            src={`https://assets.chanhdai.com/images/tech-stack-icons/${tech.key}.svg`}
-                            alt={`${tech.title} icon`}
-                            width={32}
-                            height={32}
-                            unoptimized
-                          />
-                        )}
+                        {tech.title}
                       </a>
                     }
                   />

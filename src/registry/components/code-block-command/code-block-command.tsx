@@ -254,7 +254,7 @@ export type ConvertNpmCommandResult = {
  *
  * @example
  * ```tsx
- * import { CodeBlockCommand, convertNpmCommand } from "@/components/ncdai/code-block-command"
+ * import { CodeBlockCommand, convertNpmCommand } from "@/components/code-block-command"
  *
  * <CodeBlockCommand {...convertNpmCommand("npx shadcn add button")} />
  * ```

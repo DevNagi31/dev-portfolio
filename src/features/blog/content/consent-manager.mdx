@@ -1,7 +1,7 @@
 ---
 title: Consent Manager
 description: Cookie and tracking consent banner for Next.js, built on c15t.
-image: https://assets.chanhdai.com/images/blog/consent-manager.webp
+image: ""
 category: components
 createdAt: 2025-12-16
 updatedAt: 2025-12-16
@@ -9,7 +9,7 @@ updatedAt: 2025-12-16
 
 <IframeEmbed
   className="aspect-3/4 sm:aspect-square md:aspect-video"
-  src="https://react-wheel-picker.chanhdai.com/sponsors"
+  src=""
   title="Consent Manager Demo"
 />
 
@@ -53,7 +53,7 @@ updatedAt: 2025-12-16
 <TabsContent value="cli">
 
 ```bash
-npx shadcn add @ncdai/consent-manager
+npx shadcn add @devnagi/consent-manager
 ```
 
 </TabsContent>
@@ -85,13 +85,13 @@ npm install clsx tailwind-merge @c15t/nextjs
 
 <ComponentSource
   src="src/components/consent-manager.tsx"
-  title="components/ncdai/consent-manager.tsx"
+  title="components/consent-manager.tsx"
   showLineNumbers
 />
 
 <ComponentSource
   src="src/registry/components/consent-manager/consent-manager-client.tsx"
-  title="components/ncdai/consent-manager-client.tsx"
+  title="components/consent-manager-client.tsx"
   showLineNumbers
 />
 
@@ -108,7 +108,7 @@ npm install clsx tailwind-merge @c15t/nextjs
 Wrap your app with the `ConsentManager` component:
 
 ```tsx title="app/layout.tsx" showLineNumbers {1,7}
-import { ConsentManager } from "@/components/ncdai/consent-manager"
+import { ConsentManager } from "@/components/consent-manager"
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

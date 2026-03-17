@@ -1,7 +1,7 @@
 ---
 title: Code Block Command
 description: Display install commands with package manager switcher and copy button.
-image: https://assets.chanhdai.com/images/blog/code-block-command.webp
+image: ""
 category: components
 new: true
 createdAt: 2026-02-08
@@ -10,7 +10,7 @@ updatedAt: 2026-02-21
 
 <ComponentPreview
   name="code-block-command-demo"
-  openInV0Url="https://chanhdai.com/r/code-block-command.json"
+  openInV0Url="https://devnagi.com/r/code-block-command.json"
   codeCollapsible
 />
 
@@ -30,7 +30,7 @@ updatedAt: 2026-02-21
 <TabsContent value="cli">
 
 ```bash
-npx shadcn add @ncdai/code-block-command
+npx shadcn add @devnagi/code-block-command
 ```
 
 </TabsContent>
@@ -58,7 +58,7 @@ npm install clsx tailwind-merge class-variance-authority lucide-react motion jot
 
 <ComponentSource
   src="src/components/base/ui/tabs.tsx"
-  title="components/ncdai/base/tabs.tsx"
+  title="components/base/tabs.tsx"
   showLineNumbers
 />
 
@@ -76,7 +76,7 @@ npm install clsx tailwind-merge class-variance-authority lucide-react motion jot
 
 <ComponentSource
   name="copy-button"
-  title="components/ncdai/copy-button.tsx"
+  title="components/copy-button.tsx"
   showLineNumbers
 />
 
@@ -88,7 +88,7 @@ npm install clsx tailwind-merge class-variance-authority lucide-react motion jot
 
 <ComponentSource
   name="code-block-command"
-  title="components/ncdai/code-block-command.tsx"
+  title="components/code-block-command.tsx"
   showLineNumbers
 />
 
@@ -106,15 +106,15 @@ npm install clsx tailwind-merge class-variance-authority lucide-react motion jot
 import {
   CodeBlockCommand,
   convertNpmCommand,
-} from "@/components/ncdai/code-block-command"
+} from "@/components/code-block-command"
 ```
 
 ```tsx
 <CodeBlockCommand
-  pnpm="pnpm dlx shadcn add @ncdai/code-block-command"
-  yarn="yarn shadcn add @ncdai/code-block-command"
-  npm="npx shadcn add @ncdai/code-block-command"
-  bun="bunx --bun shadcn add @ncdai/code-block-command"
+  pnpm="pnpm dlx shadcn add @devnagi/code-block-command"
+  yarn="yarn shadcn add @devnagi/code-block-command"
+  npm="npx shadcn add @devnagi/code-block-command"
+  bun="bunx --bun shadcn add @devnagi/code-block-command"
 />
 ```
 
@@ -122,7 +122,7 @@ Or use `convertNpmCommand` to auto-convert from a standard npm command:
 
 ```tsx
 <CodeBlockCommand
-  {...convertNpmCommand("npx shadcn add @ncdai/code-block-command")}
+  {...convertNpmCommand("npx shadcn add @devnagi/code-block-command")}
 />
 ```
 
@@ -176,13 +176,13 @@ Track user interactions with analytics services like [PostHog](https://posthog.c
 import {
   CodeBlockCommand,
   convertNpmCommand,
-} from "@/components/ncdai/code-block-command"
+} from "@/components/code-block-command"
 import { trackEvent } from "@/lib/events"
 
 export function InstallCommand() {
   return (
     <CodeBlockCommand
-      {...convertNpmCommand("npx shadcn add @ncdai/code-block-command")}
+      {...convertNpmCommand("npx shadcn add @devnagi/code-block-command")}
       onCopySuccess={({ packageManager, command }) => {
         trackEvent({
           name: "command_copied",

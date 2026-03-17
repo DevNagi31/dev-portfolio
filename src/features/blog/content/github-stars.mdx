@@ -1,7 +1,7 @@
 ---
 title: GitHub Stars
 description: Display GitHub repo star count with formatted numbers and full-count tooltip.
-image: https://assets.chanhdai.com/images/blog/github-stars.webp
+image: ""
 category: components
 createdAt: 2025-11-16
 updatedAt: 2026-02-20
@@ -10,7 +10,7 @@ updatedAt: 2026-02-20
 <ComponentPreview
   className="**:data-[slot=component-preview]:min-h-40"
   name="github-stars-demo"
-  openInV0Url="https://chanhdai.com/r/github-stars.json"
+  openInV0Url="https://devnagi.com/r/github-stars.json"
 />
 
 ## Features
@@ -29,7 +29,7 @@ updatedAt: 2026-02-20
 <TabsContent value="cli">
 
 ```bash
-npx shadcn add @ncdai/github-stars
+npx shadcn add @devnagi/github-stars
 ```
 
 </TabsContent>
@@ -47,7 +47,7 @@ npx shadcn add @ncdai/github-stars
 
 <ComponentSource
   name="github-stars"
-  title="components/ncdai/github-stars.tsx"
+  title="components/github-stars.tsx"
   showLineNumbers
 />
 
@@ -62,11 +62,11 @@ npx shadcn add @ncdai/github-stars
 ## Usage
 
 ```tsx
-import { GithubStars } from "@/components/ncdai/github-stars"
+import { GithubStars } from "@/components/github-stars"
 ```
 
 ```tsx
-<GithubStars repo="ncdai/chanhdai.com" stargazersCount={1050} />
+<GithubStars repo="devnagi/dev-portfolio" stargazersCount={0} />
 ```
 
 ## API Reference

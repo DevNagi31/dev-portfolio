@@ -56,13 +56,10 @@ export function rehypeComponent() {
           // Replace imports.
           // TODO: Use @swc/core and a visitor to replace this.
           // For now a simple regex should do.
-          source = source.replaceAll(
-            `@/registry/components/`,
-            "@/components/ncdai/"
-          )
+          source = source.replaceAll(`@/registry/components/`, "@/components/")
           source = source.replaceAll(
             "@/components/base/ui/",
-            "@/components/ncdai/base/"
+            "@/components/base/"
           )
           source = source.replaceAll("export default", "export")
 
@@ -123,13 +120,10 @@ export function rehypeComponent() {
           // Replace imports.
           // TODO: Use @swc/core and a visitor to replace this.
           // For now a simple regex should do.
-          source = source.replaceAll(
-            `@/registry/components/`,
-            "@/components/ncdai/"
-          )
+          source = source.replaceAll(`@/registry/components/`, "@/components/")
           source = source.replaceAll(
             "@/components/base/ui/",
-            "@/components/ncdai/base/"
+            "@/components/base/"
           )
           source = source.replaceAll("export default", "export")
 
