@@ -3,19 +3,13 @@
 import { useCommandState } from "cmdk"
 import type { LucideProps } from "lucide-react"
 import {
-  AwardIcon,
-  BookmarkIcon,
   BoxIcon,
   BriefcaseBusinessIcon,
   CircleCheckBigIcon,
   CornerDownLeftIcon,
   DownloadIcon,
-  FileTextIcon,
-  HeartIcon,
   LayersIcon,
   MoonStarIcon,
-  MousePointer2Icon,
-  QuoteIcon,
   RssIcon,
   SunMediumIcon,
   TextIcon,
@@ -26,7 +20,6 @@ import { useRouter } from "next/navigation"
 import { useTheme } from "next-themes"
 import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { useHotkeys } from "react-hotkeys-hook"
-import { toast } from "sonner"
 
 import {
   CommandDialog,
@@ -38,15 +31,13 @@ import {
 } from "@/components/ui/command"
 import type { PostPreview } from "@/features/blog/types/post"
 import { SOCIAL_LINKS } from "@/features/portfolio/data/social-links"
-import { useDuckFollowerVisibility } from "@/hooks/use-duck-follower-visibility"
 import { useSound } from "@/hooks/use-sound"
 import { trackEvent } from "@/lib/events"
 import { SOUNDS } from "@/lib/sounds"
 import { cn } from "@/lib/utils"
-import { copyToClipboardWithEvent } from "@/utils/copy"
 
-import { ChanhDaiMark } from "./chanhdai-mark"
 import { ComponentIcon, Icons } from "./icons"
+import { SiteMark } from "./site-mark"
 import { Button } from "./ui/button"
 import { Kbd, KbdGroup } from "./ui/kbd"
 import { Separator } from "./ui/separator"
@@ -65,7 +56,7 @@ const MENU_LINKS: CommandLinkItem[] = [
   {
     title: "Portfolio",
     href: "/",
-    icon: ChanhDaiMark,
+    icon: SiteMark,
   },
   {
     title: "Components",
@@ -86,11 +77,6 @@ const PORTFOLIO_LINKS: CommandLinkItem[] = [
     icon: TextInitialIcon,
   },
   {
-    title: "Testimonials",
-    href: "/testimonials",
-    icon: QuoteIcon,
-  },
-  {
     title: "Tech Stack",
     href: "/#stack",
     icon: LayersIcon,
@@ -106,19 +92,9 @@ const PORTFOLIO_LINKS: CommandLinkItem[] = [
     icon: BoxIcon,
   },
   {
-    title: "Honors & Awards",
-    href: "/#awards",
-    icon: AwardIcon,
-  },
-  {
     title: "Certifications",
     href: "/#certs",
     icon: CircleCheckBigIcon,
-  },
-  {
-    title: "Bookmarks",
-    href: "/#bookmarks",
-    icon: BookmarkIcon,
   },
   {
     title: "Download vCard",
@@ -136,17 +112,6 @@ const SOCIAL_LINK_ITEMS: CommandLinkItem[] = SOCIAL_LINKS.map((item) => ({
 
 const OTHER_LINK_ITEMS: CommandLinkItem[] = [
   {
-    title: "Sponsors",
-    href: "/sponsors",
-    icon: HeartIcon,
-  },
-  {
-    title: "llms.txt",
-    href: "/llms.txt",
-    icon: FileTextIcon,
-    openInNewTab: true,
-  },
-  {
     title: "RSS Feed",
     href: "/rss",
     icon: RssIcon,
@@ -157,13 +122,11 @@ const OTHER_LINK_ITEMS: CommandLinkItem[] = [
 export function CommandMenu({ posts }: { posts: PostPreview[] }) {
   const router = useRouter()
 
-  const { setTheme, resolvedTheme } = useTheme()
+  const { setTheme } = useTheme()
 
   const [open, setOpen] = useState(false)
 
   const playClick = useSound(SOUNDS.click)
-
-  const [, setIsDuckFollowerVisible] = useDuckFollowerVisibility()
 
   useHotkeys("mod+k, slash", (e) => {
     e.preventDefault()
@@ -204,18 +167,6 @@ export function CommandMenu({ posts }: { posts: PostPreview[] }) {
     [router]
   )
 
-  const handleCopyText = useCallback((text: string, message: string) => {
-    setOpen(false)
-    copyToClipboardWithEvent(text, {
-      name: "command_menu_action",
-      properties: {
-        action: "copy",
-        text: text,
-      },
-    })
-    toast.success(message)
-  }, [])
-
   const createThemeHandler = useCallback(
     (theme: "light" | "dark" | "system") => () => {
       setOpen(false)
@@ -240,18 +191,6 @@ export function CommandMenu({ posts }: { posts: PostPreview[] }) {
     },
     [playClick, setTheme]
   )
-
-  const handleToggleDuckFollower = useCallback(() => {
-    setOpen(false)
-    setIsDuckFollowerVisible((isVisible) => !isVisible)
-
-    trackEvent({
-      name: "command_menu_action",
-      properties: {
-        action: "toggle_duck_follower",
-      },
-    })
-  }, [setIsDuckFollowerVisible])
 
   const { componentLinks, blogLinks } = useMemo(
     () => ({
@@ -364,13 +303,6 @@ export function CommandMenu({ posts }: { posts: PostPreview[] }) {
             >
               <Icons.contrast />
               Auto
-            </CommandItem>
-          </CommandGroup>
-
-          <CommandGroup heading="Interactive Features">
-            <CommandItem onSelect={handleToggleDuckFollower}>
-              <MousePointer2Icon />
-              Toggle Duck Follower
             </CommandItem>
           </CommandGroup>
 
@@ -502,7 +434,7 @@ function CommandMenuFooter() {
       <div className="flex h-10" />
 
       <div className="absolute inset-x-0 bottom-0 flex h-10 items-center justify-between gap-2 rounded-b-2xl border-t bg-zinc-100/30 px-4 text-xs font-medium dark:bg-zinc-800/30">
-        <ChanhDaiMark className="size-6 text-muted-foreground" aria-hidden />
+        <SiteMark className="size-6 text-muted-foreground" aria-hidden />
 
         <div className="flex shrink-0 items-center gap-2">
           <span>{ENTER_ACTION_LABELS[selectedCommandKind]}</span>

@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "work-experience",
   "title": "Work Experience",
-  "author": "ncdai <dai@chanhdai.com>",
+  "author": "devnagi <dnagi@binghamton.edu>",
   "description": "Display work experiences with role details, company logos, and durations.",
   "dependencies": [
     "react-markdown",
@@ -14,7 +14,7 @@
   "registryDependencies": [
     "collapsible",
     "separator",
-    "https://chanhdai.com/r/typography.json"
+    "https://devnagi.com/r/typography.json"
   ],
   "files": [
     {
@@ -23,6 +23,6 @@
       "type": "registry:component"
     }
   ],
-  "docs": "https://chanhdai.com/components/work-experience",
+  "docs": "https://devnagi.com/components/work-experience",
   "type": "registry:component"
 }

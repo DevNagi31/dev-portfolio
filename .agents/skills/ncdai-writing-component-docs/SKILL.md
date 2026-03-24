@@ -21,7 +21,7 @@ Component docs follow this section order. Only include sections that are relevan
 ---
 title: Component Name
 description: One concise sentence about what the component does.
-image: https://assets.chanhdai.com/images/blog/{component-name}.webp
+image: https://devnagi.com/images/blog/{component-name}.webp
 category: components
 icon: {component-name}
 createdAt: YYYY-MM-DD
@@ -130,7 +130,7 @@ Each component in `src/registry/components/_registry.ts` must have a `descriptio
   type: "registry:component",
   description: "Same one-sentence description as MDX frontmatter.",
   title: "Component Name",
-  author: "ncdai <dai@chanhdai.com>",
+  author: "devnagi <dnagi@binghamton.edu>",
   // ...
 }
 ```
