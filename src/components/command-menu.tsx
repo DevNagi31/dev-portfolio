@@ -12,13 +12,12 @@ import {
   MoonStarIcon,
   RssIcon,
   SunMediumIcon,
-  TextIcon,
   TextInitialIcon,
 } from "lucide-react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { useTheme } from "next-themes"
-import React, { useCallback, useEffect, useMemo, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import { useHotkeys } from "react-hotkeys-hook"
 
 import {
@@ -29,14 +28,13 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command"
-import type { PostPreview } from "@/features/blog/types/post"
 import { SOCIAL_LINKS } from "@/features/portfolio/data/social-links"
 import { useSound } from "@/hooks/use-sound"
 import { trackEvent } from "@/lib/events"
 import { SOUNDS } from "@/lib/sounds"
 import { cn } from "@/lib/utils"
 
-import { ComponentIcon, Icons } from "./icons"
+import { Icons } from "./icons"
 import { SiteMark } from "./site-mark"
 import { Button } from "./ui/button"
 import { Kbd, KbdGroup } from "./ui/kbd"
@@ -57,16 +55,6 @@ const MENU_LINKS: CommandLinkItem[] = [
     title: "Portfolio",
     href: "/",
     icon: SiteMark,
-  },
-  {
-    title: "Components",
-    href: "/components",
-    icon: Icons.react,
-  },
-  {
-    title: "Blog",
-    href: "/blog",
-    icon: RssIcon,
   },
 ]
 
@@ -119,7 +107,7 @@ const OTHER_LINK_ITEMS: CommandLinkItem[] = [
   },
 ]
 
-export function CommandMenu({ posts }: { posts: PostPreview[] }) {
+export function CommandMenu() {
   const router = useRouter()
 
   const { setTheme } = useTheme()
@@ -192,23 +180,6 @@ export function CommandMenu({ posts }: { posts: PostPreview[] }) {
     [playClick, setTheme]
   )
 
-  const { componentLinks, blogLinks } = useMemo(
-    () => ({
-      componentLinks: posts
-        .filter((post) => post.category === "components")
-        .sort((a, b) =>
-          a.title.localeCompare(b.title, "en", {
-            sensitivity: "base",
-          })
-        )
-        .map(postToCommandLinkItem),
-      blogLinks: posts
-        .filter((post) => post.category !== "components")
-        .map(postToCommandLinkItem),
-    }),
-    [posts]
-  )
-
   return (
     <>
       <Button
@@ -259,20 +230,6 @@ export function CommandMenu({ posts }: { posts: PostPreview[] }) {
           <CommandLinkGroup
             heading="Portfolio"
             links={PORTFOLIO_LINKS}
-            onLinkSelect={handleOpenLink}
-          />
-
-          <CommandLinkGroup
-            heading="Components"
-            links={componentLinks}
-            fallbackIcon={Icons.react}
-            onLinkSelect={handleOpenLink}
-          />
-
-          <CommandLinkGroup
-            heading="Blog"
-            links={blogLinks}
-            fallbackIcon={TextIcon}
             onLinkSelect={handleOpenLink}
           />
 
@@ -451,19 +408,4 @@ function CommandMenuFooter() {
       </div>
     </>
   )
-}
-
-function postToCommandLinkItem(post: PostPreview): CommandLinkItem {
-  const isComponent = post.category === "components"
-
-  const IconComponent = isComponent
-    ? (props: LucideProps) => <ComponentIcon {...props} variant={post.slug} />
-    : undefined
-
-  return {
-    title: post.title,
-    href: isComponent ? `/components/${post.slug}` : `/blog/${post.slug}`,
-    keywords: isComponent ? ["component"] : undefined,
-    icon: IconComponent,
-  }
 }
