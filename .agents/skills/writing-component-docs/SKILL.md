@@ -1,5 +1,5 @@
 ---
-name: ncdai-writing-component-docs
+name: writing-component-docs
 description: Write and review component documentation (MDX) and registry descriptions. Covers doc structure, description writing, and Features sections. Use when creating new component docs, updating descriptions, adding Features sections, or reviewing component documentation quality.
 ---
 
